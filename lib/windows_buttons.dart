@@ -1,5 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
+import 'package:windows_clock/settings.dart';
 
 class WindowsButtons extends StatelessWidget {
   WindowsButtons({super.key});
@@ -24,6 +25,7 @@ class WindowsButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const Settings(),
         MinimizeWindowButton(colors: buttonColor,),
         MaximizeWindowButton(colors: buttonColor,),
         CloseWindowButton(colors: closeButtonColor,),

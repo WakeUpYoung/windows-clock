@@ -2,14 +2,17 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:windows_clock/windows_buttons.dart';
 import 'package:windows_clock/clock.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
-  doWhenWindowReady(() {
+  doWhenWindowReady(() async {
     var initialSize = const Size(500, 300);
     appWindow.size = initialSize;
     appWindow.minSize = initialSize;
     appWindow.title = 'My Clock';
+    Offset savedPosition = await _getSavedOffset();
+    appWindow.position = savedPosition;
     appWindow.show();
   });
 }
@@ -60,4 +63,12 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<Offset> _getSavedOffset() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var windowX = prefs.getDouble('window_x') ?? 10.0;
+  var windowY = prefs.getDouble('window_y') ?? 10.0;
+  debugPrint('get x: $windowX, y: $windowY');
+  return Offset(windowX, windowY);
 }
