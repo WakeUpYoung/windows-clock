@@ -72,7 +72,7 @@ class _SettingsState extends State<Settings>
                 child: Icon(
                   Icons.settings,
                   size: 15,
-                  color: _isHovering ? const Color(0xff86b4e4) : null,
+                  color: _isHovering ? const Color(0xff86b4e4) : const Color(0xff04376d),
                 ),
               ),
             ),
